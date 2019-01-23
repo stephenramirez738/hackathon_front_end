@@ -70,7 +70,15 @@ License: Creative Commons Attribution
 
       function setDefaultGlobals() {
         //insert default globals here
-        setGlobals({lat: -33.867, lng: 151.195},[{lat: 28.37128, lng: -81.51216},{lat: -33.867, lng: 151.198},{lat: -33.866, lng: 151.195},{lat: -33.869, lng: 151.199}]);
+        $.get("http://localhost:8080/competitiveSet?propertyId=1234952674%2F1234952674", function(data, status){
+          var competitionParser=[];
+          var responseParser = data.competitiveUnits;
+          for(var i = 0; i < responseParser.length; i++) {
+            competitionParser.push({lat:responseParser[i].geocode.latitude, lng:responseParser[i].geocode.longitude});
+          }
+        });
+
+        setGlobals({lat: -33.867, lng: 151.195},competitionParser);
       }
 
       function setGlobals(mainInput,competitionInput) {
