@@ -70,8 +70,8 @@ License: Creative Commons Attribution
 
       function setDefaultGlobals() {
         //insert default globals here
+        var competitionParser=[];
         $.get("http://localhost:8080/competitiveSet?propertyId=1234952674%2F1234952674", function(data, status){
-          var competitionParser=[];
           var responseParser = data.competitiveUnits;
           for(var i = 0; i < responseParser.length; i++) {
             competitionParser.push({lat:responseParser[i].geocode.latitude, lng:responseParser[i].geocode.longitude});
